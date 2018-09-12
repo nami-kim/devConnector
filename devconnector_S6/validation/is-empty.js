@@ -5,6 +5,3 @@ const isEmpty = value =>
   (typeof value === 'string' && value.trim().length === 0);
 
 module.exports = isEmpty;
-
-// validator empty -> only checks for empty string
-// _isEmpty -> only checks for empty objects/collections (not number)
