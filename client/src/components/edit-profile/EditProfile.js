@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProfile, getCurrentProfile } from '../../actions/profileActions';
-import isEmpty from '../../validation/is-empty'
+import isEmpty from '../../validation/is-empty';
 
 class EditProfile extends Component {
   constructor(props) {
@@ -41,23 +41,31 @@ class EditProfile extends Component {
     }
 
     if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile
+      const profile = nextProps.profile.profile;
 
       //Bring skills array back to CSV
-      const skillsCSV = profile.skills.join(',')
+      const skillsCSV = profile.skills.join(',');
 
       //If profile field doesn't exist, make empty string
-      profile.company = !isEmpty(profile.company) ? profile.company: ''
-      profile.website = !isEmpty(profile.website) ? profile.website: ''
-      profile.location = !isEmpty(profile.location) ? profile.location: ''
-      profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername: ''
-      profile.bio = !isEmpty(profile.bio) ? profile.bio: ''
-      profile.social = !isEmpty(profile.social) ? profile.company: {}
-      profile.twitter = !isEmpty(profile.social.twitter) ? profile.twitter: ''
-      profile.youtube = !isEmpty(profile.social.youtube) ? profile.youtube: ''
-      profile.instragram = !isEmpty(profile.social.instragram) ? profile.instragram: ''
-      profile.facebook = !isEmpty(profile.social.facebook) ? profile.facebook: ''
-      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.linkedin: ''
+      profile.company = !isEmpty(profile.company) ? profile.company : '';
+      profile.website = !isEmpty(profile.website) ? profile.website : '';
+      profile.location = !isEmpty(profile.location) ? profile.location : '';
+      profile.githubusername = !isEmpty(profile.githubusername)
+        ? profile.githubusername
+        : '';
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
+      profile.social = !isEmpty(profile.social) ? profile.company : {};
+      profile.twitter = !isEmpty(profile.social.twitter) ? profile.twitter : '';
+      profile.youtube = !isEmpty(profile.social.youtube) ? profile.youtube : '';
+      profile.instagram = !isEmpty(profile.social.instagram)
+        ? profile.instagram
+        : '';
+      profile.facebook = !isEmpty(profile.social.facebook)
+        ? profile.facebook
+        : '';
+      profile.linkedin = !isEmpty(profile.social.linkedin)
+        ? profile.linkedin
+        : '';
 
       // Set component field state
       this.setState(() => ({
@@ -74,9 +82,8 @@ class EditProfile extends Component {
         linkedin: profile.linkedin,
         youtube: profile.youtube,
         instagram: profile.instagram
-      }))
+      }));
     } else {
-
     }
   }
   onSubmit = e => {
@@ -172,6 +179,9 @@ class EditProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+              <Link to="/dashboard" className="btn btn-light">
+                Go Back
+              </Link>
               <h1 className="display-4 text-center">Edit Profile</h1>
               <small className="d-block pb-3">*=required fields</small>
               <form onSubmit={this.onSubmit}>
